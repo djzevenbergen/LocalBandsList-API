@@ -78,14 +78,21 @@ dotnet run
 
 ```
 {
-        "name": "Joly Jands Joliday Joopla",
-      "type": "restaurant",
-      "description": "Holiday specialities from your favorite Latinx nuns!",
-      "phoneNumber": "7878799456",
-      "webSite": "https://www.reddit.com/",
-      "userId": 2
+
+"name": "Rickety Sherpa",
+ "genre": "indie",
+  "bio": "Two boozers screechin",
+   "yearFormed": "2016",
+    "videoLink": "https://www.youtube.com/watch?v=QwyGwSEcMro",
+    "musicLink": "https://soundcloud.com/ricketysherpa/i-could-be-your-best-friend",
+     "zipCode": "98020",
+      "gigging": false,
+       "together": false,
+        "userId": 1
 }
 ```
+
+
 
 * this post shouldn't work
 * you must have a bearer token to post
