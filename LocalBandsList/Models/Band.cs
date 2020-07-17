@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace LocalBandsList.Models
 {
-  public class Band : IValidatableObject
+  //public class Band : IValidatableObject
+  public class Band
   {
     public int BandId { get; set; }
     [Required]
@@ -22,17 +23,17 @@ namespace LocalBandsList.Models
     public int UserId { get; set; }
     public bool Gigging { get; set; }
 
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-      List<string> genres = new List<string> { "restaurant", "shop" };
+    // public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    // {
+    //   List<string> genres = new List<string> { "restaurant", "shop" };
 
-      if (!genres.Contains(Genre))
-      {
-        yield return new ValidationResult(
-            $"Please either use {genres[0]} or {genres[1]}",
-            new[] { "Type" });
-      }
-    }
+    //   if (!genres.Contains(Genre))
+    //   {
+    //     yield return new ValidationResult(
+    //         $"Please either use {genres[0]} or {genres[1]}",
+    //         new[] { "Type" });
+    //   }
+    // }
 
   }
 }
