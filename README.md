@@ -4,7 +4,6 @@
 #### By _**DJ Zevenbergen**_
 
 
-
 ## Description
 
 _An API build in C#/.Net Core 2.2.0 that uses token authentication, swagger documentation, and Versioning._
