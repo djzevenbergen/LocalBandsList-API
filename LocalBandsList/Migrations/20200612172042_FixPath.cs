@@ -1,17 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace LocalBusinessLookup.Migrations
+namespace LocalBandsList.Migrations
 {
-    public partial class FixPath : Migration
+  public partial class FixPath : Migration
+  {
+    protected override void Up(MigrationBuilder migrationBuilder)
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
 
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-
-        }
     }
+
+    protected override void Down(MigrationBuilder migrationBuilder)
+    {
+
+    }
+  }
 }

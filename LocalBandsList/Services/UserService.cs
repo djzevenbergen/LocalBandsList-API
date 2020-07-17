@@ -6,10 +6,10 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using LocalBusinessLookup.Models;
-using LocalBusinessLookup.Helpers;
+using LocalBandsList.Models;
+using LocalBandsList.Helpers;
 
-namespace LocalBusinessLookup.Services
+namespace LocalBandsList.Services
 {
   public interface IUserService
   {
@@ -25,11 +25,11 @@ namespace LocalBusinessLookup.Services
     //         new User { Id = 1, FirstName = "Test", LastName = "User", Username = "test", Password = "test" }
     //     };
 
-    private LocalBusinessLookupContext _users;
+    private LocalBandsListContext _users;
 
     private readonly AppSettings _appSettings;
 
-    public UserService(IOptions<AppSettings> appSettings, LocalBusinessLookupContext db)
+    public UserService(IOptions<AppSettings> appSettings, LocalBandsListContext db)
     {
       _appSettings = appSettings.Value;
       _users = db;

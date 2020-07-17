@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "LocalBusinessLookup": {
+    "LocalBandsList": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "api/values",

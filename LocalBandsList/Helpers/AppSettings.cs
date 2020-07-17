@@ -1,4 +1,4 @@
-namespace LocalBusinessLookup.Helpers
+namespace LocalBandsList.Helpers
 {
   public class AppSettings
   {

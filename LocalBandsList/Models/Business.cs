@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
-namespace LocalBusinessLookup.Models
+namespace LocalBandsList.Models
 {
-  public class Business : IValidatableObject
+  public class Band : IValidatableObject
   {
-    public int BusinessId { get; set; }
+    public int BandId { get; set; }
     [Required]
     [StringLength(50)]
     public string Name { get; set; }

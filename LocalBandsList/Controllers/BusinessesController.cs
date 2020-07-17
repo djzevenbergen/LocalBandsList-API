@@ -3,81 +3,81 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using LocalBusinessLookup.Models;
+using LocalBandsList.Models;
 using Microsoft.AspNetCore.Authorization;
-using LocalBusinessLookup.Services;
+using LocalBandsList.Services;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace LocalBusinessLookup.Controllers
+namespace LocalBandsList.Controllers
 {
   [ApiVersion("1.0")]
-  [Route("api/businesses")]
+  [Route("api/bands")]
   [ApiController]
-  public class BusinessesController : ControllerBase
+  public class BandesController : ControllerBase
   {
-    private LocalBusinessLookupContext _db;
+    private LocalBandsListContext _db;
 
     private IUserService _userService;
 
-    public BusinessesController(LocalBusinessLookupContext db, IUserService userService)
+    public BandesController(LocalBandsListContext db, IUserService userService)
     {
       _db = db;
       _userService = userService;
     }
 
-    // POST api/Businesses
+    // POST api/Bands
     [Authorize]
     [HttpPost]
-    public void Post([FromBody] Business business)
+    public void Post([FromBody] Band band)
     {
-      _db.Businesses.Add(business);
+      _db.Bands.Add(band);
       _db.SaveChanges();
     }
 
-    // GET api/Businesses/#
+    // GET api/Bands/#
     [HttpGet("{id}")]
-    public ActionResult<Business> Get(int id)
+    public ActionResult<Band> Get(int id)
     {
-      return _db.Businesses.FirstOrDefault(entry => entry.BusinessId == id);
+      return _db.Bands.FirstOrDefault(entry => entry.BandId == id);
     }
 
-    //PUT api/Businesses/userId/BusinessId
+    //PUT api/Bands/userId/BandId
     [Authorize]
     [HttpPut("{userId}/{id}")]
-    public void Put(int userId, int id, [FromBody] Business business)
+    public void Put(int userId, int id, [FromBody] Band band)
     {
-      business.BusinessId = id;
-      if (business.UserId == userId)
+      band.BandId = id;
+      if (band.UserId == userId)
       {
-        _db.Entry(business).State = EntityState.Modified;
+        _db.Entry(band).State = EntityState.Modified;
         _db.SaveChanges();
       }
     }
 
-    //http://localhost:5000/api/Businesses/1/9
+    //http://localhost:5000/api/Bands/1/9
     [Authorize]
     [HttpDelete("{userId}/{id}")]
     public void Delete(int id, int userId)
     {
-      var businessToDelete = _db.Businesses.FirstOrDefault(entry => entry.BusinessId == id);
-      if (businessToDelete.UserId == userId)
+      var bandToDelete = _db.Bands.FirstOrDefault(entry => entry.BandId == id);
+      if (bandToDelete.UserId == userId)
       {
-        _db.Businesses.Remove(businessToDelete);
+        _db.Bands.Remove(bandToDelete);
         _db.SaveChanges();
       }
     }
 
     [HttpGet("random")]
-    public ActionResult<Business> Random()
+    public ActionResult<Band> Random()
     {
-      var query = _db.Businesses.AsQueryable().ToList();
+      var query = _db.Bands.AsQueryable().ToList();
       List<int> idList = new List<int>();
 
 
-      foreach (Business b in query)
+      foreach (Band b in query)
       {
-        idList.Add(b.BusinessId);
+        idList.Add(b.BandId);
       }
 
       Random rand = new Random();
@@ -88,12 +88,12 @@ namespace LocalBusinessLookup.Controllers
     }
 
 
-    // GET api/Businesses
+    // GET api/Bands
     [HttpGet]
     // public ActionResult<IEnumerable<Remedy>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
     public ActionResult<Dictionary<string, object>> Get(string name, string type, string description, string phoneNumber, string webSite, int userId)
     {
-      var query = _db.Businesses.AsQueryable();
+      var query = _db.Bands.AsQueryable();
 
       if (name != null)
       {
@@ -129,131 +129,131 @@ namespace LocalBusinessLookup.Controllers
       List<string> types = new List<string> { "restaurant", "shop" };
       response.Add("version", version);
       response.Add("types", types);
-      response.Add("businesses", query);
+      response.Add("bands", query);
       return response;
     }
   }
 
-  [ApiVersion("2.0")]
-  [Route("api/businesses")]
-  [ApiController]
-  public class BusinessesV2Controller : ControllerBase
-  {
-    private LocalBusinessLookupContext _db;
+  // [ApiVersion("2.0")]
+  // [Route("api/bands")]
+  // [ApiController]
+  // public class BandesV2Controller : ControllerBase
+  // {
+  //   private LocalBandsListContext _db;
 
-    private IUserService _userService;
+  //   private IUserService _userService;
 
-    public BusinessesV2Controller(LocalBusinessLookupContext db, IUserService userService)
-    {
-      _db = db;
-      _userService = userService;
-    }
+  //   public BandesV2Controller(LocalBandsListContext db, IUserService userService)
+  //   {
+  //     _db = db;
+  //     _userService = userService;
+  //   }
 
-    // POST api/Businesses
-    [Authorize]
-    [HttpPost]
-    public void Post([FromBody] Business business)
-    {
-      _db.Businesses.Add(business);
-      _db.SaveChanges();
-    }
+  //   // POST api/Bands
+  //   [Authorize]
+  //   [HttpPost]
+  //   public void Post([FromBody] Band band)
+  //   {
+  //     _db.Bands.Add(band);
+  //     _db.SaveChanges();
+  //   }
 
-    // GET api/Businesses/#
-    [HttpGet("{id}")]
-    public ActionResult<Business> Get(int id)
-    {
-      return _db.Businesses.FirstOrDefault(entry => entry.BusinessId == id);
-    }
+  //   // GET api/Bands/#
+  //   [HttpGet("{id}")]
+  //   public ActionResult<Band> Get(int id)
+  //   {
+  //     return _db.Bands.FirstOrDefault(entry => entry.BandId == id);
+  //   }
 
-    //PUT api/Businesses/userId/BusinessId
-    [Authorize]
-    [HttpPut("{userId}/{id}")]
-    public void Put(int userId, int id, [FromBody] Business business)
-    {
-      business.BusinessId = id;
-      if (business.UserId == userId)
-      {
-        _db.Entry(business).State = EntityState.Modified;
-        _db.SaveChanges();
-      }
-    }
+  //   //PUT api/Bands/userId/BandId
+  //   [Authorize]
+  //   [HttpPut("{userId}/{id}")]
+  //   public void Put(int userId, int id, [FromBody] Band band)
+  //   {
+  //     band.BandId = id;
+  //     if (band.UserId == userId)
+  //     {
+  //       _db.Entry(band).State = EntityState.Modified;
+  //       _db.SaveChanges();
+  //     }
+  //   }
 
-    //http://localhost:5000/api/Businesses/1/9
-    [Authorize]
-    [HttpDelete("{userId}/{id}")]
-    public void Delete(int id, int userId)
-    {
-      var businessToDelete = _db.Businesses.FirstOrDefault(entry => entry.BusinessId == id);
-      if (businessToDelete.UserId == userId)
-      {
-        _db.Businesses.Remove(businessToDelete);
-        _db.SaveChanges();
-      }
-    }
+  //   //http://localhost:5000/api/Bands/1/9
+  //   [Authorize]
+  //   [HttpDelete("{userId}/{id}")]
+  //   public void Delete(int id, int userId)
+  //   {
+  //     var bandToDelete = _db.Bands.FirstOrDefault(entry => entry.BandId == id);
+  //     if (bandToDelete.UserId == userId)
+  //     {
+  //       _db.Bands.Remove(bandToDelete);
+  //       _db.SaveChanges();
+  //     }
+  //   }
 
-    [HttpGet("random")]
-    public ActionResult<Business> Random()
-    {
-      var query = _db.Businesses.AsQueryable().ToList();
-      List<int> idList = new List<int>();
-
-
-      foreach (Business b in query)
-      {
-        idList.Add(b.BusinessId);
-      }
-
-      Random rand = new Random();
-      int r = rand.Next(0, idList.Count);
-      Console.WriteLine(r);
-      return query[r];
-
-    }
+  //   [HttpGet("random")]
+  //   public ActionResult<Band> Random()
+  //   {
+  //     var query = _db.Bands.AsQueryable().ToList();
+  //     List<int> idList = new List<int>();
 
 
-    // GET api/Businesses
-    [HttpGet]
-    // public ActionResult<IEnumerable<Remedy>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
-    public ActionResult<Dictionary<string, object>> Get(string name, string type, string description, string phoneNumber, string webSite, int userId)
-    {
-      var query = _db.Businesses.AsQueryable();
+  //     foreach (Band b in query)
+  //     {
+  //       idList.Add(b.BandId);
+  //     }
 
-      if (name != null)
-      {
-        query = query.Where(entry => entry.Name.ToLower().Contains(name.ToLower()));
-      }
+  //     Random rand = new Random();
+  //     int r = rand.Next(0, idList.Count);
+  //     Console.WriteLine(r);
+  //     return query[r];
 
-      if (type != null)
-      {
-        query = query.Where(entry => entry.Type.ToLower().Contains(type.ToLower()));
-      }
+  //   }
 
-      if (description != null)
-      {
-        query = query.Where(entry => entry.Description.ToLower().Contains(description.ToLower()));
-      }
 
-      if (phoneNumber != null)
-      {
-        query = query.Where(entry => entry.PhoneNumber == phoneNumber);
-      }
+  //   // GET api/Bands
+  //   [HttpGet]
+  //   // public ActionResult<IEnumerable<Remedy>> Get(string name, string details, string ailment, string category, string ingredients, int userId)
+  //   public ActionResult<Dictionary<string, object>> Get(string name, string type, string description, string phoneNumber, string webSite, int userId)
+  //   {
+  //     var query = _db.Bands.AsQueryable();
 
-      if (webSite != null)
-      {
-        query = query.Where(entry => entry.WebSite == webSite);
-      }
+  //     if (name != null)
+  //     {
+  //       query = query.Where(entry => entry.Name.ToLower().Contains(name.ToLower()));
+  //     }
 
-      if (userId != 0)
-      {
-        query = query.Where(entry => entry.UserId == userId);
-      }
-      Dictionary<string, object> response = new Dictionary<string, object>();
-      List<string> version = new List<string> { "version 2" };
-      List<string> types = new List<string> { "restaurant", "shop" };
-      response.Add("version", version);
-      response.Add("types", types);
-      response.Add("businesses", query);
-      return response;
-    }
-  }
+  //     if (type != null)
+  //     {
+  //       query = query.Where(entry => entry.Type.ToLower().Contains(type.ToLower()));
+  //     }
+
+  //     if (description != null)
+  //     {
+  //       query = query.Where(entry => entry.Description.ToLower().Contains(description.ToLower()));
+  //     }
+
+  //     if (phoneNumber != null)
+  //     {
+  //       query = query.Where(entry => entry.PhoneNumber == phoneNumber);
+  //     }
+
+  //     if (webSite != null)
+  //     {
+  //       query = query.Where(entry => entry.WebSite == webSite);
+  //     }
+
+  //     if (userId != 0)
+  //     {
+  //       query = query.Where(entry => entry.UserId == userId);
+  //     }
+  //     Dictionary<string, object> response = new Dictionary<string, object>();
+  //     List<string> version = new List<string> { "version 2" };
+  //     List<string> types = new List<string> { "restaurant", "shop" };
+  //     response.Add("version", version);
+  //     response.Add("types", types);
+  //     response.Add("bands", query);
+  //     return response;
+  //   }
+  // }
 }

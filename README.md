@@ -1,4 +1,4 @@
-# _Local Business Lookup_
+# _Local Band Lookup_
 #### _Epicodus Project June 12, 2020_
 
 #### By _**DJ Zevenbergen**_
@@ -13,7 +13,7 @@ _An API build in C#/.Net Core 2.2.0 that uses token authentication, swagger docu
 
 * Clone this repository from GitHub.
 * Ensure that MySQL and C#/.netcore2.2 is installed on your computer.
-* create a file named "appsettings.json" in the LocalBusinessLookup folder
+* create a file named "appsettings.json" in the LocalBandsList folder
 * populate it with the following text (replacing with your credentials)
 
 ```
@@ -25,7 +25,7 @@ _An API build in C#/.Net Core 2.2.0 that uses token authentication, swagger docu
   },
   "AllowedHosts": "*",
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port={your default port number here!};database=local_business_lookup;uid={your mysql userid here!};pwd={your password for mysql here!};"
+      "DefaultConnection": "Server=localhost;Port={your default port number here!};database=local_band_lookup;uid={your mysql userid here!};pwd={your password for mysql here!};"
     },
   "AppSettings": {
     "Secret": "##add a 128 bit secret here"
@@ -34,7 +34,7 @@ _An API build in C#/.Net Core 2.2.0 that uses token authentication, swagger docu
 ```
 
 
-* create a file named "appsettings.Development.json" in the LocalBusinessLookup folder
+* create a file named "appsettings.Development.json" in the LocalBandsList folder
 * populate it with the following text (replacing with your credentials)
 
 ```
@@ -48,7 +48,7 @@ _An API build in C#/.Net Core 2.2.0 that uses token authentication, swagger docu
   },
   "AllowedHosts": "*",
     "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port={your default port number here!};database=local_business_lookup;uid={your mysql userid here!};pwd={your password for mysql here!};"
+      "DefaultConnection": "Server=localhost;Port={your default port number here!};database=local_band_lookup;uid={your mysql userid here!};pwd={your password for mysql here!};"
     }
 }
 ```
@@ -70,11 +70,11 @@ dotnet run
 
 * use postman to interact with the api
 
-* A user can get all using localhost:5000/api/businesses
+* A user can get all using localhost:5000/api/bands
 
-* a user can get a random business using localhost:5000/api/businesses/random
+* a user can get a random band using localhost:5000/api/bands/random
 
-* To see authentication in action, you should try to do a post request in postman with no header post: localhost:5000/api/businesses:
+* To see authentication in action, you should try to do a post request in postman with no header post: localhost:5000/api/bands:
 
 ```
 {
@@ -113,7 +113,7 @@ dotnet run
 
 ```
 
-* this request should return a token.  copy the token and put it in the authorization header of a post request to localhost:5000/api/businesses
+* this request should return a token.  copy the token and put it in the authorization header of a post request to localhost:5000/api/bands
 
 ```
 {
@@ -125,15 +125,15 @@ dotnet run
       "userId": 2
 }
 ```
-* you should now be able to run a get localhost:3000/api/businesses and see that your new business has been added
+* you should now be able to run a get localhost:3000/api/bands and see that your new band has been added
 
-* to see versioning at work, you can add run get requests to http://localhost:5000/api/businesses/?api-version=2.0 and http://localhost:5000/api/businesses/?api-version=1.0
+* to see versioning at work, you can add run get requests to http://localhost:5000/api/bands/?api-version=2.0 and http://localhost:5000/api/bands/?api-version=1.0
 * the response headers should contains different versions
 
 
 
 * This API uses Swagger. 
-* You're going to need to comment out lines 137-258 of business controller and rebuild to see it work.
+* You're going to need to comment out lines 137-258 of band controller and rebuild to see it work.
 
 * To launch the Swagger/OpenAPI utility in your browser, from the project directory in your terminal, enter dotnet run and open a browser page at localhost:5000.  You can now see all API routes grouped by controller.  Clicking on a route will expand it and show details of that route, and give you the option to "Try It Out."
 
@@ -164,14 +164,14 @@ _Have a bug or an issue with this application? [Open a new issue] here on GitHub
 
 ### User Story
 
-* As a user, I want to be able GET all businesses 
-* As a user, I want to be able to POST businesses.
-* As a user, I want to be able to PUT and DELETE businesses that I have created.
-* As a user, I want to be able to look up businesses by name, type, description, phone number and website.
+* As a user, I want to be able GET all bands 
+* As a user, I want to be able to POST bands.
+* As a user, I want to be able to PUT and DELETE bands that I have created.
+* As a user, I want to be able to look up bands by name, type, description, phone number and website.
 * As a user, I want error messages to tell me what I did wrong.
-* As a user, I want to be able to create a user profile and log in so that I can add, see, edit, and delete my businesses.
+* As a user, I want to be able to create a user profile and log in so that I can add, see, edit, and delete my bands.
 
-* On get request, return dictionary with key value pairs of ```{{"version", "version 1}, {"types", List<strings>{"types","businesses"}}, {"response", List<Remedy>{}}```
+* On get request, return dictionary with key value pairs of ```{{"version", "version 1}, {"types", List<strings>{"types","bands"}}, {"response", List<Remedy>{}}```
 
 
 

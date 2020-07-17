@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using LocalBusinessLookup.Helpers;
-using LocalBusinessLookup.Services;
+using LocalBandsList.Helpers;
+using LocalBandsList.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using LocalBusinessLookup.Models;
+using LocalBandsList.Models;
 using Microsoft.OpenApi.Models;
 
 
-namespace LocalBusinessLookup
+namespace LocalBandsList
 {
   public class Startup
   {
@@ -29,7 +29,7 @@ namespace LocalBusinessLookup
     {
       services.AddCors();
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-      services.AddDbContext<LocalBusinessLookupContext>(opt =>
+      services.AddDbContext<LocalBandsListContext>(opt =>
       opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
 
       // configure strongly typed settings objects
@@ -47,7 +47,7 @@ namespace LocalBusinessLookup
       // Register the Swagger generator, defining 1 or more Swagger documents
       services.AddSwaggerGen(c =>
       {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Local Business Lookup", Version = "v1" });
+        c.SwaggerDoc("v1", new OpenApiInfo { Title = "Local Band Lookup", Version = "v1" });
 
       });
 

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace LocalBusinessLookup.Models
+namespace LocalBandsList.Models
 {
   public class User
   {

@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using LocalBusinessLookup.Services;
-using LocalBusinessLookup.Models;
+using LocalBandsList.Services;
+using LocalBandsList.Models;
 using System;
 
-namespace LocalBusinessLookup.Controllers
+namespace LocalBandsList.Controllers
 {
   [Authorize]
   [ApiController]
@@ -12,10 +12,10 @@ namespace LocalBusinessLookup.Controllers
   public class UsersController : ControllerBase
   {
 
-    private LocalBusinessLookupContext _db;
+    private LocalBandsListContext _db;
     private IUserService _userService;
 
-    public UsersController(LocalBusinessLookupContext db, IUserService userService)
+    public UsersController(LocalBandsListContext db, IUserService userService)
     {
       _db = db;
       _userService = userService;
